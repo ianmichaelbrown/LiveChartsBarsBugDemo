@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.Maui;assembly=LiveChartsCore.SkiaSharpView.Maui"
+             xmlns:vms="clr-namespace:LiveChartsBarsUIBug;assembly=LiveChartsBarsUIBug"
+             x:Class="LiveChartsBarsUIBug.MainPage">
+
+    <ContentPage.BindingContext>
+        <vms:ViewModel/>
+    </ContentPage.BindingContext>
+
+    <VerticalStackLayout>
+        <lvc:CartesianChart HeightRequest="{OnPlatform 500,Android=250}"
+                            WidthRequest="{OnPlatform 1000, Android=500}"
+                            Series="{Binding Series}"
+                            XAxes="{Binding XAxes}">
+        </lvc:CartesianChart>
+
+        <HorizontalStackLayout Margin="0,10">
+            <CheckBox x:Name="cbVisibility"
+                      IsChecked="{Binding IsVisible}" />
+            <Label VerticalTextAlignment="Center"
+                   Text="Toggle Visibility" />
+            <Button x:Name="btnUpdate"
+                    Margin="30,0,0,0"
+                    Text="Update"
+                    Command="{Binding UpdateCommand}" />
+            <Button Margin="10,0,0,0"
+                    Text="Clear"
+                    Command="{Binding ClearCommand}" />
+        </HorizontalStackLayout>
+    </VerticalStackLayout>
+
+</ContentPage>
